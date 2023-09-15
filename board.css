@@ -21,7 +21,8 @@
 }
 
 .frame {
-    margin-top: 50px;
+    margin: 25px 0;
+    padding-top: 25px;
     display: inline-flex;
     text-align: center;
     justify-content: center;
@@ -237,5 +238,5 @@ button {
 }
 
 .paging-btn {
-    padding: 0 10px 0 10px;
+    padding: 0 10px;
 }
