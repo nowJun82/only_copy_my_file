@@ -1,0 +1,141 @@
+<html lnag="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>팻밀리 > 맵</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+	<script type="text/javascript"
+		src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ey84cumz9a"></script>
+        <link rel="stylesheet" href="/style.css">
+        <link rel="stylesheet" href="/map.css">
+</head>
+
+<header class="top-bar">
+  <div class="top-bar__in flex">
+    <div class="w-0 flex-1 flex items-center pl-6">
+      <a href="home.html">
+        <img src="main_images/PETMILY_LOGO.png" alt="PETMILY">
+      </a>
+    </div>
+
+    <ul class="top-bar__menu">
+      <li>
+        <a href="#">소개</a>
+      </li>
+      <li>
+        <a href="#">커뮤니티</a>
+        <ul>
+          <li><a href="/question/notification"><span>공지</span></a></li>
+          <li><a href="/question/news"><span>뉴스</span></a></li>
+          <li><a href="/question/list"><span>자유 게시판</span></a></li>
+          <li><a href="/question/tip"><span>팁 게시판</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">스토어</a>
+      </li>
+      <li>
+        <a href="map.html">맵</a>
+        <ul>
+          <li><a href="#"><span>병원</span></a></li>
+          <li><a href="#"><span>호텔</span></a></li>
+          <li><a href="#"><span>숙소</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">고객지원</a>
+        <ul>
+          <li><a href="/user/QnA"><span>QnA</span></a></li>
+          <li><a href="/user/inquiry"><span>1:1문의</span></a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="w-0 flex-1 flex gap-2 items-center pr-6 justify-end">
+      <div class="loginORlogout flex gap-1">
+        <a href="/user/signup"><button class="custom-btn btn-11">로그인</button></a>
+      </div>
+
+      <div class="profile flex gap-1">
+        <a href="#"><img src="main_images/profile.png" alt="PROFILE"></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<body>
+	<div id="map" class="map"></div>
+
+	<script type="text/javascript">
+
+		// 설정한 위도와 경도, 줌 레벨에 맞는 위치를 센터로 잡아서 제공
+		var map = new naver.maps.Map('map', {
+			center: new naver.maps.LatLng(36.3494029, 127.3768244),
+			zoom: 17
+		});
+
+		// 맵에 마커 표시
+		//var marker = new naver.maps.Marker({
+		//	position: new naver.maps.LatLng(36.3494029, 127.3768244),
+		//	map: map
+		//});
+
+		// 맵에 지정한 곳의 위치와 마커 동시에 찍기
+		var HOME_PATH = window.HOME_PATH || '.';
+
+		// 변수 sbsAcademy의 위도, 경도 값
+		var sbsAcademy = new naver.maps.LatLng(36.3494029, 127.3768244),
+			map = new naver.maps.Map('map', {
+				// 정보 창이 나타날 팝업의 위치
+				center: sbsAcademy.destinationPoint(0, 125),
+				// 기본 줌 레벨
+				zoom: 17,
+				zoomControl: true,
+				zoomControlOptions: {
+					style: naver.maps.ZoomControlStyle.SMALL,
+					position: naver.maps.Position.TOP_RIGHT
+				}
+			}),
+			// 마커 표시
+			marker = new naver.maps.Marker({
+				map: map,
+				position: sbsAcademy
+			});
+
+		// 정보 창에 들어갈 내용 입력
+		var contentString = [
+			'<div class="iw_inner">',
+			'   <h3>SBS아카데미 컴퓨터 학원</h3>',
+			'   <p>대전 서구 대덕대로 179 굿모닝어학원빌딩 9층 sbs아카데미컴퓨터아트학원 대전점<br />',
+			'       <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAyMjBfMjg3%2FMDAxNjc2ODU2MzYwMDkw.rc1i6Dkr4QQjynV-kxmIqrcnKEfFwzr9x-gxcUKpG1Ig.vyXunoO2e3fWFC4naGsPqkrNV0UJsI8uZfQxZ1GbyiYg.JPEG.economicfreedom2030%2F173ff26db6d6eada1b70bd7588ca3dd059054436965fd4f87e63eaf81a0f9ffc7c172f98530.jpeg&type=sc960_832" width="55" height="55" alt="sbs아카데미컴퓨터아트학원 대전점" class="thumb" /><br />',
+			'       042-719-8383 | 학원 > 컴퓨터<br />',
+			'       <a href="http://daejeon.sbsart.com/" target="_blank">http://daejeon.sbsart.com/</a>',
+			'   </p>',
+			'</div>'
+		].join('');
+
+		// 정보 창의 커스터마이징
+		var infowindow = new naver.maps.InfoWindow({
+			content: contentString,
+			// 배경색
+			backgroundColor: "#FFF",
+			// 테두리색
+			borderColor: "#A5C8A0",
+			// 테두리 두께
+			borderWidth: 2
+		});
+
+		naver.maps.Event.addListener(marker, "click", function (e) {
+			if (infowindow.getMap()) {
+				infowindow.close();
+			} else {
+				infowindow.open(map, marker);
+			}
+		});
+
+		infowindow.open(map, marker);
+
+	</script>
+</body>
+
+</html>

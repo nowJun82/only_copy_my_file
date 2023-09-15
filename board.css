@@ -230,8 +230,12 @@ button {
 }
 
 .btns {
-    padding: 25px 5px 0 5px;
+    padding: 35px 25px 0 25px;
     font-size: 18px;
     border-top: 1px solid #DCAA6E;
     text-align: center;
+}
+
+.paging-btn {
+    padding: 0 10px 0 10px;
 }
