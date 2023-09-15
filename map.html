@@ -83,36 +83,69 @@
 
 <body>
 	<div id="map" class="map"></div>
-
+<!--
 	<script type="text/javascript">
+		
 
 		// 설정한 위도와 경도, 줌 레벨에 맞는 위치를 센터로 잡아서 제공
 		var map = new naver.maps.Map('map', {
 			center: new naver.maps.LatLng(36.3494029, 127.3768244),
-			zoom: 17
-		});
-
-		// 맵에 마커 표시
-		//var marker = new naver.maps.Marker({
-		//	position: new naver.maps.LatLng(36.3494029, 127.3768244),
-		//	map: map
-		//});
-
-		// 맵에 지정한 곳의 위치와 마커 동시에 찍기
-		var HOME_PATH = window.HOME_PATH || '.';
-
-		// 변수 sbsAcademy의 위도, 경도 값
-		var sbsAcademy = new naver.maps.LatLng(36.3494029, 127.3768244),
-			map = new naver.maps.Map('map', {
-				// 정보 창이 나타날 팝업의 위치
-				center: sbsAcademy.destinationPoint(0, 125),
-				// 기본 줌 레벨
-				zoom: 17,
-				zoomControl: true,
+			zoom: 15,
+			zoomControl: true,
 				zoomControlOptions: {
 					style: naver.maps.ZoomControlStyle.SMALL,
 					position: naver.maps.Position.TOP_RIGHT
 				}
+		});
+
+		// 맵에 지정한 곳의 위치와 마커 동시에 찍기
+		var HOME_PATH = window.HOME_PATH || '.';
+
+		var hospitelWellCare = new naver.maps.LatLng(36.3024808, 127.3354944),
+			map = new naver.maps.Map('map', {
+				// 정보 창이 나타날 팝업의 위치
+				center: hospitelWellCare.destinationPoint(0, 125)
+			}),
+			// 마커 표시
+			marker = new naver.maps.Marker({
+				map: map,
+				position: hospitelWellCare
+			});
+
+		// 정보 창에 들어갈 내용 입력
+		var hospitelWellCareContent = [
+			'<div class="iw_inner">',
+			'   <h3>웰케어 동물병원</h3>',
+			'   <p>대전 서구 관저북로13번길 23-12 1층<br />',
+			'       0507-1422-2475 | 동물병원<br />',
+			'   </p>',
+			'</div>'
+		].join('');
+
+		// 정보 창의 커스터마이징
+		var hospitelWellCareContentInfo = new naver.maps.InfoWindow({
+			content: hospitelWellCareContent,
+			// 배경색
+			backgroundColor: "#FFF",
+			// 테두리색
+			borderColor: "#FF0000",
+			// 테두리 두께
+			borderWidth: 2
+		});
+
+		naver.maps.Event.addListener(marker, "click", function (e) {
+			if (hospitelWellCareContentInfo.getMap()) {
+				hospitelWellCareContentInfo.close();
+			} else {
+				hospitelWellCareContentInfo.open(map, marker);
+			}
+		});
+		infowindow.open(map, marker);
+
+		var sbsAcademy = new naver.maps.LatLng(36.3494029, 127.3768244),
+			map = new naver.maps.Map('map', {
+				// 정보 창이 나타날 팝업의 위치
+				center: sbsAcademy.destinationPoint(0, 125)
 			}),
 			// 마커 표시
 			marker = new naver.maps.Marker({
@@ -121,7 +154,7 @@
 			});
 
 		// 정보 창에 들어갈 내용 입력
-		var contentString = [
+		var sbsAcademyContent = [
 			'<div class="iw_inner">',
 			'   <h3>SBS아카데미 컴퓨터 학원</h3>',
 			'   <p>대전 서구 대덕대로 179 굿모닝어학원빌딩 9층 sbs아카데미컴퓨터아트학원 대전점<br />',
@@ -133,8 +166,8 @@
 		].join('');
 
 		// 정보 창의 커스터마이징
-		var infowindow = new naver.maps.InfoWindow({
-			content: contentString,
+		var sbsAcademyContentInfo = new naver.maps.InfoWindow({
+			content: sbsAcademyContent,
 			// 배경색
 			backgroundColor: "#FFF",
 			// 테두리색
@@ -144,16 +177,16 @@
 		});
 
 		naver.maps.Event.addListener(marker, "click", function (e) {
-			if (infowindow.getMap()) {
-				infowindow.close();
+			if (sbsAcademyContentInfo.getMap()) {
+				sbsAcademyContentInfo.close();
 			} else {
-				infowindow.open(map, marker);
+				sbsAcademyContentInfo.open(map, marker);
 			}
 		});
-
 		infowindow.open(map, marker);
 
 	</script>
+-->
 </body>
-
+<script src="map.js"></script>
 </html>
