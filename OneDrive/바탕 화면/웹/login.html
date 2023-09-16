@@ -1,0 +1,105 @@
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>펫밀리</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/login.css">
+</head>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<header class="top-bar">
+  <div class="top-bar__in flex">
+    <div class="w-0 flex-1 flex items-center pl-6">
+      <a href="/">
+        <img src="/PETMILY_LOGO.png" alt="PETMILY">
+      </a>
+    </div>
+
+    <ul class="top-bar__menu">
+      <li>
+        <a href="#">소개</a>
+      </li>
+      <li>
+        <a href="#">커뮤니티</a>
+        <ul>
+          <li><a href="/question/notification"><span>공지</span></a></li>
+          <li><a href="/question/news"><span>뉴스</span></a></li>
+          <li><a href="/question/list"><span>자유 게시판</span></a></li>
+          <li><a href="/question/tip"><span>팁 게시판</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">스토어</a>
+      </li>
+      <li>
+        <a href="#">맵</a>
+        <ul>
+          <li><a href="#"><span>병원</span></a></li>
+          <li><a href="#"><span>호텔</span></a></li>
+          <li><a href="#"><span>숙소</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">고객지원</a>
+        <ul>
+          <li><a href="/user/QnA"><span>QnA</span></a></li>
+          <li><a href="/user/inquiry"><span>1:1문의</span></a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="w-0 flex-1 flex gap-2 items-center pr-6 justify-end">
+      <div class="loginORlogout flex gap-1">
+        <a href="/user/signup"><button class="custom-btn btn-11">로그인</button></a>
+      </div>
+
+      <div class="profile flex gap-1">
+        <a href="#"><img src="/profile.png" alt="PROFILE"></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="form-structor">
+  <div class="signup">
+      <h2 class="form-title" id="signup">회원가입</h2>
+      <form th:action="@{/user/signup}" th:object="${userCreateForm}" method="post">
+      <div class="form-holder">
+          <input id="user" type="text" th:field="*{username}" class="input"  placeholder="아이디"/>
+          <input type="password" th:field="*{password1}" class="input" placeholder="비밀번호"/>
+          <input type="password" th:field="*{password2}" class="input" placeholder="비밀번호 확인"/>
+          <input type="text" th:field="*{email}" class="input" placeholder="이메일"/>
+          <input type="text" th:field="*{nickname}" class="input" placeholder="닉네임"/>
+          <div th:replace="~{form_errors :: formErrorsFragment}"></div>
+      </div>
+      <button type="submit" class="submit-btn">가입하기</button>
+      </form>
+  </div>
+  <div class="login slide-up">
+      <div class="center">
+          <h2 class="form-title" id="login">로그인</h2>
+          <div class="form-holder">
+              <input type="email" class="input" placeholder="아이디"/>
+              <input type="password" class="input" placeholder="비밀번호"/>
+          </div>
+          <button class="submit-btn">로그인</button>
+          <div class="hr"></div>
+          <div class="social-foot-lnk">
+              <label for="tab-1">소셜 서비스로 로그인</label>
+          </div>
+          <div class="social-container">
+              <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+              <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+
+          </div>
+      </div>
+
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/login.js"></script>
+</html>

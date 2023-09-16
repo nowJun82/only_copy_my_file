@@ -1,0 +1,88 @@
+<html lnag="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>팻밀리 > 맵</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+	<script type="text/javascript"
+		src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=ey84cumz9a"></script>
+        <link rel="stylesheet" href="/style.css">
+        <link rel="stylesheet" href="/map.css">
+</head>
+
+<header class="top-bar">
+  <div class="top-bar__in flex">
+    <div class="w-0 flex-1 flex items-center pl-6">
+      <a href="home.html">
+        <img src="main_images/PETMILY_LOGO.png" alt="PETMILY">
+      </a>
+    </div>
+
+    <ul class="top-bar__menu">
+      <li>
+        <a href="#">소개</a>
+      </li>
+      <li>
+        <a href="#">커뮤니티</a>
+        <ul>
+          <li><a href="/question/notification"><span>공지</span></a></li>
+          <li><a href="/question/news"><span>뉴스</span></a></li>
+          <li><a href="/question/list"><span>자유 게시판</span></a></li>
+          <li><a href="/question/tip"><span>팁 게시판</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">스토어</a>
+      </li>
+      <li>
+        <a href="map.html">맵</a>
+        <ul>
+          <li><a href="#"><span>병원</span></a></li>
+          <li><a href="#"><span>호텔</span></a></li>
+          <li><a href="#"><span>숙소</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">고객지원</a>
+        <ul>
+          <li><a href="/user/QnA"><span>QnA</span></a></li>
+          <li><a href="/user/inquiry"><span>1:1문의</span></a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="w-0 flex-1 flex gap-2 items-center pr-6 justify-end">
+      <div class="loginORlogout flex gap-1">
+        <a href="/user/signup"><button class="custom-btn btn-11">로그인</button></a>
+      </div>
+
+      <div class="profile flex gap-1">
+        <a href="#"><img src="main_images/profile.png" alt="PROFILE"></a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section>
+    <div class="board-top-bar">
+        <div class="board-top-bar-title">
+            지 도
+        </div>
+        
+        <div class="frame">
+            <button class="my-custom-btn my-btn-5"><span><a href="">병 원</a></span></button>
+            <button class="my-custom-btn my-btn-5"><span><a href="">호 텔</a></span></button>
+            <button class="my-custom-btn my-btn-5"><span><a href="">숙 소</a></span></button>
+        </div>
+        
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M598.97 114.72L0 0 0 120 1200 120 1200 0 598.97 114.72z" class="shape-fill"></path>
+        </svg>
+    </div>
+</section>
+
+<body>
+	<div id="map" class="map"></div>
+</body>
+<script src="map.js"></script>
+</html>
